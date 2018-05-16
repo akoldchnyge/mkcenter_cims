@@ -44,10 +44,10 @@
 			</props>
 		</property>
 	</bean>
-	<!--配置附加工具，以及将后缀为vm的文件交给下面的Resolver处理 -->
+	<!--配置附加工具，以及将后缀为html的文件交给下面的Resolver处理 -->
 	<bean id="velocityViewResolver"
 		class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">
-		<property name="prefix" value="/" />
+		<property name="prefix" value="/WEB-INF/" />
 		<property name="suffix" value=".html" />
 		<property name="contentType" value="text/html;charset=utf-8" />
 	</bean>
@@ -58,6 +58,10 @@
 		<mvc:interceptor>
 			<mvc:mapping path="/**" />
 			<bean class="com.mktech.interceptor.PassportInterceptor"></bean>
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/**" />
+			<bean class="com.mktech.interceptor.LoginRequiredInterceptor"></bean>
 		</mvc:interceptor>
 	</mvc:interceptors>
 

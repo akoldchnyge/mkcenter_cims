@@ -74,6 +74,7 @@ public class LoginController {
 	public String login(Model model,
 			@RequestParam("username") String username,
 			@RequestParam("password") String password,
+			@RequestParam(value = "next",required = false) String next,
 			HttpServletResponse response){
 		System.out.println("收到登录请求 username:"+username);
 		try {
@@ -87,7 +88,7 @@ public class LoginController {
 				response.addCookie(cookie);
 				System.out.println("渲染成功");
 				model.addAttribute("tmpname",username);
-				return "login/success";
+				return "controller_main/new_index";
 			}
 			return "redirect:/";
 		} catch (Exception e) {

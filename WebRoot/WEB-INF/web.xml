@@ -81,7 +81,7 @@
     <mime-type>text/plain</mime-type>
   </mime-mapping>
   <welcome-file-list>
-    <welcome-file>/login/auto_index.html</welcome-file>
+    <welcome-file>/WEB-INF/login/auto_index.html</welcome-file>
 
   </welcome-file-list>
   <error-page>
