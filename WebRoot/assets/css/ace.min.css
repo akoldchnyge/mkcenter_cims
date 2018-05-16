@@ -2434,7 +2434,8 @@ li [class ^="icon-"],li [class *=" icon-"],.nav-list li [class ^="icon-"],.nav-l
 	text-align: center;
 	line-height: 39px;
 	max-height: 41px;
-	margin-bottom: 0
+	margin-bottom: 0;
+	margin-top:-20px
 }
 
 .sidebar-shortcuts-large {
