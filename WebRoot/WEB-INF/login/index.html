@@ -7,6 +7,8 @@
 <meta http-equiv="Expires" content="0">
 <title>mkcenter</title>
 <link href="login/login.css" rel="stylesheet" type="text/css" />
+<script src="assets/js/jquery-2.0.3.min.js"></script>
+<script src="assets/js/jquery.cookie.js"></script>
 </head>
 
 <body>
@@ -21,12 +23,11 @@
 			</div>
 			<div class="login_name">
 				<p>
-					<font size="1"> Mkcenter </font>
+					<font size="1">水泥在线运行状态监控系统</font>
 				</p>
 			</div>
 			<form method="post" action="/mkcenter/login.do" id="regloginform">
-				<input name="username" type="text" value="用户名"
-					onfocus="if(this.value=='用户名'){this.value=''}"
+				<input name="username" type="text" value="$!{username}" placeholder="用户名"
 					onblur="if(this.value==''){this.value='用户名'}"> 
 					<span id="password_text"
 					onclick="this.style.display='none';document.getElementById('password').style.display='block';document.getElementById('password').focus().select();">密码</span>
@@ -47,5 +48,6 @@
 		</div>
 		<div class="copyright">浙江大学机械工程学院工业工程 版权所有©2016-2018</div>
 	</div>
+
 </body>
 </html>

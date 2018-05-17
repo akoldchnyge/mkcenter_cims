@@ -44,7 +44,7 @@
           <br/>
         </td>
       </tr>
-      <tr><td align="center"><a href="axis2-web/index.jsp">home</a></td></tr>
+      <tr><td align="center"><a href="/mkcenter/index.do">home</a></td></tr>
     </table>
     <hr/>
     <table width="100%">

@@ -116,4 +116,9 @@ public class SnUserServiceImpl implements SnUserService {
 		
 	}
 
+	@Override
+	public void logout(String ticket) {
+		snUserTicketMapper.updateStatusForLoggout(ticket);
+	}
+
 }

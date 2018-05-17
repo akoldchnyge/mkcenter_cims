@@ -56,6 +56,7 @@ public class PassportInterceptor implements HandlerInterceptor {
 			Object object, ModelAndView modelAndView) throws Exception {
 		// TODO Auto-generated method stub
 		System.out.println("setting....");
+		//所有的controller在渲染前都能获得user信息
 		if(modelAndView!=null && hostHolder.getUser() != null){
 			modelAndView.addObject("user", hostHolder.getUser());
 		}

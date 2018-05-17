@@ -20,4 +20,6 @@ public interface SnUserTicketDao {
 
     int updateByPrimaryKey(SnUserTicket record);
     
+    int updateStatusForLoggout(String ticket);
+    
 }

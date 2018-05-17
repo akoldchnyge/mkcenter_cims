@@ -17,6 +17,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -46,7 +47,7 @@ public class LoginController {
 	
 	@RequestMapping(value = { "/index" }, method = {RequestMethod.GET})
 	public String index() {
-		return "login/index";
+		return "WEB-INF/login/index";
 	}
 
 	@RequestMapping(path = {"/reg"}, method = {RequestMethod.POST})
@@ -58,7 +59,7 @@ public class LoginController {
 			Map<String, String> map = snUserService.register(username, password);
 			if(map.containsKey("msg")){
 				model.addAttribute("msg", map.get("msg"));
-				return "login/index";
+				return "WEB-INF/login/index";
 			}
 			
 			return "redirect:/";
@@ -66,10 +67,19 @@ public class LoginController {
 			// TODO: handle exception
 			LOGGER.error("注册异常"+e.getMessage());
 			model.addAttribute("msg", "服务器异常");
-			return "login/index";
+			return "WEB-INF/login/index";
 		}
 	}
 	
+	/**
+	 * 登录
+	 * @param model
+	 * @param username
+	 * @param password
+	 * @param next
+	 * @param response
+	 * @return
+	 */
 	@RequestMapping(path = {"/login"},method = {RequestMethod.POST})
 	public String login(Model model,
 			@RequestParam("username") String username,
@@ -81,24 +91,35 @@ public class LoginController {
 			Map<String, String> map = snUserService.login(username, password);
 			if(map.containsKey("msg")){
 				model.addAttribute("msg", map.get("msg"));
-				return "login/index";
+				model.addAttribute("username", username);
+				return "WEB-INF/login/index";
 			}else if(map.containsKey("ticket")){
 				Cookie cookie = new Cookie("ticket", map.get("ticket"));
 				cookie.setPath("/");
 				response.addCookie(cookie);
 				System.out.println("渲染成功");
 				model.addAttribute("tmpname",username);
-				return "controller_main/new_index";
+				return "WEB-INF/controller_main/new_index";
 			}
 			return "redirect:/";
 		} catch (Exception e) {
 			// TODO: handle exception
 			LOGGER.error("登录异常"+e.getMessage());
 			model.addAttribute("msg", "服务器异常");
-			return "login/index";
+			return "WEB-INF/login/index";
 		}
 	}
 	
+	/**
+	 * 登出
+	 * @param ticket
+	 * @return
+	 */
+	@RequestMapping(path = {"/logout"}, method = {RequestMethod.GET})
+	public String logout(@CookieValue("ticket") String ticket){
+		snUserService.logout(ticket);
+		return "redirect:/";
+	}
 	
 	/**
 	 * 测试方法入口

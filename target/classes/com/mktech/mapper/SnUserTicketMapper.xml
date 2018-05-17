@@ -96,4 +96,9 @@
       STATUS = #{status,jdbcType=INTEGER}
     where ID = #{id,jdbcType=INTEGER}
   </update>
+  <update id="updateStatusForLoggout" parameterType="java.lang.String">
+    update SN_USER_TICKET
+    set STATUS = 1
+    where TICKET = #{ticket,jdbcType=VARCHAR}
+  </update>
 </mapper>
