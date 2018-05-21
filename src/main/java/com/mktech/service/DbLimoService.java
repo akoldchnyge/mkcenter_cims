@@ -24,6 +24,8 @@ public interface DbLimoService {
 	int insertSelective(DbLimo record);
 
 	DbLimo selectByPrimaryKey(Integer id);
+	
+	DbLimo selectNearestRecord(String timestamp);
 
 	int updateByPrimaryKeySelective(DbLimo record);
 

@@ -204,6 +204,13 @@
 		where ID &gt;= #{min,jdbcType=INTEGER} and ID &lt;=
 		#{max,jdbcType=INTEGER}
 	</select>
+	<select id="selectNearestRecord" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from DB_LIMO
+		where TIMESTAMP &lt;= #{timestamp,jdbcType=VARCHAR} order by TIMESTAMP desc limit 1
+	</select>
 	<select id="selectByKeyRangeIntoMap" parameterType="java.lang.Integer"
 		resultType="java.util.LinkedHashMap">
 		select

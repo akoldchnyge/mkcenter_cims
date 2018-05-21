@@ -96,9 +96,11 @@ public class LoginController {
 			}else if(map.containsKey("ticket")){
 				Cookie cookie = new Cookie("ticket", map.get("ticket"));
 				cookie.setPath("/");
+				long tmptime = Long.parseLong("1522701557277");
 				response.addCookie(cookie);
 				System.out.println("渲染成功");
 				model.addAttribute("tmpname",username);
+				model.addAttribute("tmptime",tmptime);
 				return "WEB-INF/controller_main/new_index";
 			}
 			return "redirect:/";

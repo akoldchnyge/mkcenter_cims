@@ -18,6 +18,8 @@ public interface DbLimoDao {
 
     DbLimo selectByPrimaryKey(Integer id);
     
+    DbLimo selectNearestRecord(String timestamp);
+    
     List<DbLimo> selectByKeyRange(@Param("min") Integer min,@Param("max") Integer max);
     
     List<Map<String, Object>> selectByKeyRangeIntoMap(@Param("min") Integer min,@Param("max") Integer max);

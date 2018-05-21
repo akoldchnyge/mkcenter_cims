@@ -279,4 +279,9 @@ public class DbLimoServiceImpl implements DbLimoService {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
+	@Override
+	public DbLimo selectNearestRecord(String timestamp) {
+		return dbLimoMapper.selectNearestRecord(timestamp);
+	}
 }
