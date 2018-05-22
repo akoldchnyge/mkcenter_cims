@@ -44,12 +44,6 @@ public class LoginController {
 	@Resource
 	private DbLimoServiceImpl dbLimoService;
 	
-	
-	@RequestMapping(value = { "/index" }, method = {RequestMethod.GET})
-	public String index() {
-		return "WEB-INF/login/index";
-	}
-
 	@RequestMapping(path = {"/reg"}, method = {RequestMethod.POST})
 	public String reg(Model model,
 					@RequestParam("username") String username,
@@ -71,6 +65,14 @@ public class LoginController {
 		}
 	}
 	
+	/**
+	 * 重定向
+	 * @return
+	 */
+	@RequestMapping(value = { "/index" }, method = {RequestMethod.GET})
+	public String index() {
+		return "WEB-INF/login/index";
+	}
 	/**
 	 * 登录
 	 * @param model
@@ -98,7 +100,6 @@ public class LoginController {
 				cookie.setPath("/");
 				long tmptime = Long.parseLong("1522701557277");
 				response.addCookie(cookie);
-				System.out.println("渲染成功");
 				model.addAttribute("tmpname",username);
 				model.addAttribute("tmptime",tmptime);
 				return "WEB-INF/controller_main/new_index";
@@ -123,6 +124,23 @@ public class LoginController {
 		return "redirect:/";
 	}
 	
+	/**
+	 * 控制器tab入口
+	 * @param model
+	 * @param response
+	 * @param ticket
+	 * @return
+	 */
+	@RequestMapping(path = {"/ControllerIndex"},method = {RequestMethod.GET})
+	public String ControllerIndex(Model model,
+									HttpServletResponse response,
+									@CookieValue("ticket") String ticket){
+		long tmptime = Long.parseLong("1522701557277");
+		System.out.println(snUserService.getUserByTicket(ticket).getUsername());
+		model.addAttribute("tmpname",snUserService.getUserByTicket(ticket).getUsername());
+		model.addAttribute("tmptime",tmptime);
+		return "WEB-INF/controller_main/new_index";
+	}
 	/**
 	 * 测试方法入口
 	 * testLin.do?
@@ -150,11 +168,9 @@ public class LoginController {
 		response.getOutputStream().close();
 		//测试是否能释放内存
 		bytes = null;
-		
-//		dbLimoService.export2Excel(min, max);
-		
 		return "success!";
 		
 	}
+	
 	
 }

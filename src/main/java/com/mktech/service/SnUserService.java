@@ -19,5 +19,7 @@ public interface SnUserService {
 	
 	String addLoginTicket(int userId);
 	
+	SnUser getUserByTicket(String ticket);
+	
 	void logout(String ticket);
 }

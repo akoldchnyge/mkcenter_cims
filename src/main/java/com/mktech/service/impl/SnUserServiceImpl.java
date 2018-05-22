@@ -121,4 +121,11 @@ public class SnUserServiceImpl implements SnUserService {
 		snUserTicketMapper.updateStatusForLoggout(ticket);
 	}
 
+	@Override
+	public SnUser getUserByTicket(String ticket) {
+		// TODO Auto-generated method stub
+		SnUser snUser = snUserMapper.selectByPrimaryKey(snUserTicketMapper.selectByTicket(ticket).getUserid());
+		return snUser;
+	}
+
 }
