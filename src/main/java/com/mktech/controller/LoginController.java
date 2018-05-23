@@ -141,6 +141,24 @@ public class LoginController {
 		model.addAttribute("tmptime",tmptime);
 		return "WEB-INF/controller_main/new_index";
 	}
+	
+	/**
+	 * 数据查询tab入口
+	 * @param model
+	 * @param response
+	 * @param ticket
+	 * @return
+	 */
+	@RequestMapping(path = {"/ControllerTable"},method = {RequestMethod.GET})
+	public String ControllerTable(Model model,
+									HttpServletResponse response,
+									@CookieValue("ticket") String ticket){
+		long tmptime = Long.parseLong("1522701557277");
+		System.out.println(snUserService.getUserByTicket(ticket).getUsername());
+		model.addAttribute("tmpname",snUserService.getUserByTicket(ticket).getUsername());
+		model.addAttribute("tmptime",tmptime);
+		return "WEB-INF/controller_main/table";
+	}
 	/**
 	 * 测试方法入口
 	 * testLin.do?

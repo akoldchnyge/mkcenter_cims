@@ -2,7 +2,7 @@
 <html lang="zh">
 <head>
 <meta charset="utf-8" />
-<title>控制台 - Bootstrap后台管理系统模版Ace下载</title>
+<title>数据查询</title>
 <meta name="keywords" content="" />
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -17,6 +17,10 @@
 <link rel="stylesheet" href="assets/css/ace.min.css" />
 <link rel="stylesheet" href="assets/css/ace-rtl.min.css" />
 <link rel="stylesheet" href="assets/css/ace-skins.min.css" />
+<!-- page specific plugin styles -->
+
+<link rel="stylesheet" href="assets/css/jquery-ui-1.10.3.full.min.css" />
+
 
 <script src="assets/js/ace-extra.min.js"></script>
 
@@ -54,7 +58,72 @@
 					} catch (e) {
 					}
 				</script>
-				#parse("ToolBar.html")
+				<div class="sidebar-shortcuts" id="sidebar-shortcuts">
+					<div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">
+						<button class="btn btn-success">
+							<i class="icon-signal"></i>
+						</button>
+						<button class="btn btn-info">
+							<i class="icon-pencil"></i>
+						</button>
+
+						<button class="btn btn-warning">
+							<i class="icon-group"></i>
+						</button>
+
+						<button class="btn btn-danger">
+							<i class="icon-cogs"></i>
+						</button>
+					</div>
+
+					<div class="sidebar-shortcuts-mini" id="sidebar-shortcuts-mini">
+						<span class="btn btn-success"></span> <span class="btn btn-info"></span>
+
+						<span class="btn btn-warning"></span> <span class="btn btn-danger"></span>
+					</div>
+				</div>
+	<ul class="nav nav-list">
+	<li><a href="ControllerIndex.do"> <i
+			class="icon-dashboard"></i> <span class="menu-text"> 控制台 </span> </a></li>
+			
+	<li class="active"><a href="ControllerTable.do"> <i class="icon-list"></i>
+			<span class="menu-text">数据查询 </span>
+	</a>	
+
+	<li><a href="#" class="dropdown-toggle"> <i class="icon-desktop"></i>
+			<span class="menu-text">远程监控</span> <b class="arrow icon-angle-down"></b>
+	</a>
+
+		<ul class="submenu">
+			<li><a href="tables.html"> <i
+					class="icon-double-angle-right"></i>运行状态 </a></li>
+			<li><a href="tables.html"> <i
+					class="icon-double-angle-right"></i>故障信息 </a></li>
+			<li><a href="tables.html"> <i
+					class="icon-double-angle-right"></i>指令调控</a></li>
+		</ul></li>
+	<li><a href="#" class="dropdown-toggle"> <i class="icon-bar-chart"></i>
+			<span class="menu-text"> 数据分析 </span> <b
+			class="arrow icon-angle-down"></b> </a>
+
+		<ul class="submenu">
+			<li><a href="blank.html"> <i class="icon-double-angle-right"></i>
+					运行统计 </a></li>
+			<li><a href="blank.html"> <i class="icon-double-angle-right"></i>
+					算法分析 </a></li>
+		</ul></li>
+
+	<li><a href="#" class="dropdown-toggle"> <i
+			class="icon-file-alt"></i> <span class="menu-text"> 其他页面 <span
+				class="badge badge-primary ">5</span> </span> <b
+			class="arrow icon-angle-down"></b> </a>
+		<ul class="submenu">
+			<li><a href="blank.html"> <i class="icon-double-angle-right"></i>
+					------ </a></li>
+			<li><a href="blank.html"> <i class="icon-double-angle-right"></i>
+					------ </a></li>
+		</ul></li>
+</ul>
 				<div class="sidebar-collapse" id="sidebar-collapse">
 					<i class="icon-double-angle-left"
 						data-icon1="icon-double-angle-left"
@@ -80,7 +149,7 @@
 
 					<ul class="breadcrumb">
 						<li><i class="icon-home home-icon"></i> <a href="#">首页</a></li>
-						<li class="active">控制台</li>
+						<li class="active">数据查询</li>
 					</ul>
 					<!-- .breadcrumb -->
 
@@ -98,7 +167,7 @@
 				<div class="page-content">
 					<div class="page-header">
 						<h1>
-							控制台 <small> <i class="icon-double-angle-right"></i> 查看 </small>
+							数据查询 <small> <i class="icon-double-angle-right"></i> 表格 </small>
 						</h1>
 					</div>
 					<!-- /.page-header -->
@@ -106,15 +175,6 @@
 					<div class="row">
 						<div class="col-xs-12">
 							<!-- PAGE CONTENT BEGINS -->
-
-							<div class="alert alert-block alert-success">
-								<button type="button" class="close" data-dismiss="alert">
-									<i class="icon-remove"></i>
-								</button>
-
-								<i class="icon-ok green"></i> 欢迎使用 <strong class="green">
-									Ace后台管理系统 <small>(v1.2)</small> </strong> ,轻量级好用的后台管理系统模版.
-							</div>
 
 							<div class="row">
 								<div class="space-6"></div>
@@ -174,287 +234,42 @@
 										</div>
 									</div>
 								</div>
-
-								<div class="vspace-sm"></div>
-
-								<div class="col-sm-5"></div>
 								<!-- /span -->
 							</div>
-							<!-- /row -->
-
 							<div class="hr hr32 hr-dotted"></div>
-
 							<div class="row">
-								<div class="col-md-10 col-md-offset-1">
-									<div class="widget-box transparent">
-										<div class="widget-header widget-header-flat">
-											<h4 class="lighter">
-												<i class="icon-signal"></i> 稳定指标
-											</h4>
-
-											<div class="widget-toolbar">
-												<a href="#" data-action="collapse"> <i
-													class="icon-chevron-up"></i> </a>
-											</div>
-										</div>
-
-										<div class="widget-body">
-											<div class="widget-main padding-4">
-												<div id="A_CHART"></div>
-											</div>
-											<!-- /widget-main -->
-										</div>
-										<!-- /widget-body -->
-									</div>
-									<!-- /widget-box -->
+								<div class="col-md-6">
+									<div class="input-group input-group-sm">
+										<input type="text" id="datepicker" class="form-control" />
+											<span class="input-group-addon">
+												<i class="icon-calendar"></i>
+											</span>
+									</div>								
 								</div>
 							</div>
-						<div class="hr hr32 hr-dotted"></div>
-
+							<div class="clearfix" style="margin-bottom: 10px;"></div><!-- 清除浮动 -->  
 							<div class="row">
-								<div class="col-md-10 col-md-offset-1">
-									<div class="widget-box transparent">
-										<div class="widget-header widget-header-flat">
-											<h4 class="lighter">
-												<i class="icon-signal"></i> 能耗指标
-											</h4>
-
-											<div class="widget-toolbar">
-												<a href="#" data-action="collapse"> <i
-													class="icon-chevron-up"></i> </a>
-											</div>
-										</div>
-
-										<div class="widget-body">
-											<div class="widget-main padding-4">
-												<div id="B_CHART"></div>
-											</div>
-											<!-- /widget-main -->
-										</div>
-										<!-- /widget-body -->
+								<div class="col-md-12">
+									<div class="table-header">
+										烧成系统数据
 									</div>
-									<!-- /widget-box -->
-								</div>
+									
+									<div class="table-responsive">
+										<table id="sample-table-1" class="table table-striped table-bordered table-hover">
+											<thead>
+												<tr>
+														<th class="center">序号</th>
+														<th class="center"><i class="icon-time bigger-110 hidden-480"></i>时间</th>
+														<th class="center">Price</th>
+														<th class="center">Clicks</th>
+												</tr>
+											</thead>
+										</table>
+									</div>
 							</div>
-						<div class="hr hr32 hr-dotted"></div>
-
-							<div class="row">
-								<div class="col-sm-6">
-									<div class="widget-box transparent" id="recent-box">
-										<div class="widget-header">
-											<h4 class="lighter smaller">
-												<i class="icon-rss orange"></i> 最近
-											</h4>
-
-											<div class="widget-toolbar no-border">
-												<ul class="nav nav-tabs" id="recent-tab">
-													<li class="active"><a data-toggle="tab" href="#comment-tab">警报记录</a></li>
-													<li><a data-toggle="tab" href="#member-tab">维护记录</a></li>
-												</ul>
-											</div>
-										</div>
-
-										<div class="widget-body">
-											<div class="widget-main padding-4">
-												<div class="tab-content padding-8 overflow-visible">
-												
-													<div id="comment-tab" class="tab-pane active">
-													<table id="warning-record-table" class="table table-striped table-bordered table-hover">
-														<thead>
-														<tr>
-														<th class="col-md-2 center">序号</th>
-														<th class="col-md-2 center">工位</th>
-														<th class="col-md-4 center">
-															<i class="icon-time bigger-110 hidden-480"></i>
-															时间
-														</th>
-														<th class="hidden-480 col-md-2 center" >状态</th>
-														<th class="col-md-2 center">操作员</th>
-														</tr>
-														</thead>
-														</table>
-													
-														<div class="hr hr-double hr8"></div>
-													</div>
-													<div id="member-tab" class="tab-pane">
-													<table id="warning-record-table" class="table table-striped table-bordered table-hover">
-														<thead>
-														<tr>
-														<th class="col-md-2 center">序号</th>
-														<th class="col-md-2 center">工位1</th>
-														<th class="col-md-4 center">
-															<i class="icon-time bigger-110 hidden-480"></i>
-															时间
-														</th>
-														<th class="hidden-480 col-md-2 center" >状态</th>
-														<th class="col-md-2 center">操作员</th>
-														</tr>
-														</thead>
-														</table>
-													
-														<div class="hr hr-double hr8"></div>
-													</div>
-												</div>
-											</div>
-											<!-- /widget-main -->
-										</div>
-										<!-- /widget-body -->
-									</div>
-									<!-- /widget-box -->
-								</div>
-								<!-- /span -->
-
-								<div class="col-sm-6">
-									<div class="widget-box ">
-										<div class="widget-header">
-											<h4 class="lighter smaller">
-												<i class="icon-comment blue"></i> 留言板
-											</h4>
-										</div>
-
-										<div class="widget-body">
-											<div class="widget-main no-padding">
-												<div class="dialogs">
-													<div class="itemdiv dialogdiv">
-														<div class="user">
-															<img alt="Alexa's Avatar"
-																src="assets/avatars/avatar1.png" />
-														</div>
-
-														<div class="body">
-															<div class="time">
-																<i class="icon-time"></i> <span class="green">4秒钟前</span>
-															</div>
-
-															<div class="name">
-																<a href="#">Alexa</a>
-															</div>
-															<div class="text">大家好啊</div>
-
-															<div class="tools">
-																<a href="#" class="btn btn-minier btn-info"> <i
-																	class="icon-only icon-share-alt"></i> </a>
-															</div>
-														</div>
-													</div>
-
-													<div class="itemdiv dialogdiv">
-														<div class="user">
-															<img alt="John's Avatar" src="assets/avatars/avatar.png" />
-														</div>
-
-														<div class="body">
-															<div class="time">
-																<i class="icon-time"></i> <span class="blue">38秒以前</span>
-															</div>
-
-															<div class="name">
-																<a href="#">John</a>
-															</div>
-															<div class="text">框架很好用嘛</div>
-
-															<div class="tools">
-																<a href="#" class="btn btn-minier btn-info"> <i
-																	class="icon-only icon-share-alt"></i> </a>
-															</div>
-														</div>
-													</div>
-
-													<div class="itemdiv dialogdiv">
-														<div class="user">
-															<img alt="Bob's Avatar" src="assets/avatars/user.jpg" />
-														</div>
-
-														<div class="body">
-															<div class="time">
-																<i class="icon-time"></i> <span class="orange">2分钟以前</span>
-															</div>
-
-															<div class="name">
-																<a href="#">Bob</a> <span
-																	class="label label-info arrowed arrowed-in-right">admin</span>
-															</div>
-															<div class="text">欢迎大家使用ACE后台管理系统.</div>
-
-															<div class="tools">
-																<a href="#" class="btn btn-minier btn-info"> <i
-																	class="icon-only icon-share-alt"></i> </a>
-															</div>
-														</div>
-													</div>
-
-													<div class="itemdiv dialogdiv">
-														<div class="user">
-															<img alt="Jim's Avatar" src="assets/avatars/avatar4.png" />
-														</div>
-
-														<div class="body">
-															<div class="time">
-																<i class="icon-time"></i> <span class="grey">3分钟以前</span>
-															</div>
-
-															<div class="name">
-																<a href="#">Jim</a>
-															</div>
-															<div class="text">大家多提提BUG</div>
-
-															<div class="tools">
-																<a href="#" class="btn btn-minier btn-info"> <i
-																	class="icon-only icon-share-alt"></i> </a>
-															</div>
-														</div>
-													</div>
-
-													<div class="itemdiv dialogdiv">
-														<div class="user">
-															<img alt="Alexa's Avatar"
-																src="assets/avatars/avatar1.png" />
-														</div>
-
-														<div class="body">
-															<div class="time">
-																<i class="icon-time"></i> <span class="green">4分钟以前</span>
-															</div>
-
-															<div class="name">
-																<a href="#">Alexa</a>
-															</div>
-															<div class="text">继续支持ACE后台系统</div>
-
-															<div class="tools">
-																<a href="#" class="btn btn-minier btn-info"> <i
-																	class="icon-only icon-share-alt"></i> </a>
-															</div>
-														</div>
-													</div>
-												</div>
-
-												<form>
-													<div class="form-actions">
-														<div class="input-group">
-															<input placeholder="Type your message here ..."
-																type="text" class="form-control" name="message" /> <span
-																class="input-group-btn">
-																<button class="btn btn-sm btn-info no-radius"
-																	type="button">
-																	<i class="icon-share-alt"></i> 发送
-																</button> </span>
-														</div>
-													</div>
-												</form>
-											</div>
-											<!-- /widget-main -->
-										</div>
-										<!-- /widget-body -->
-									</div>
-									<!-- /widget-box -->
-								</div>
-								<!-- /span -->
-							</div>
-							<!-- /row -->
-
+							
 							<!-- PAGE CONTENT ENDS -->
-						</div>
+						
 						<!-- /.col -->
 					</div>
 					<!-- /.row -->
@@ -535,9 +350,7 @@
 				|| document
 						.write("<script src='assets/js/jquery-2.0.3.min.js'>"
 								+ "<"+"script>");
-		 $(document).ready(function () {
-			    window.setInterval(refreshForm1, 3000);
-			 });
+
 	</script>
 
 
@@ -549,13 +362,6 @@
 	</script>
 	<script src="assets/js/bootstrap.min.js"></script>
 	<script src="assets/js/typeahead-bs2.min.js"></script>
-
-	<!-- page specific plugin scripts -->
-
-	<!--[if lte IE 8]>
-		  <script src="assets/js/excanvas.min.js"></script>
-		<![endif]-->
-
 	<script src="assets/js/jquery-ui-1.10.3.custom.min.js"></script>
 	<script src="assets/js/jquery.ui.touch-punch.min.js"></script>
 	<script src="assets/js/jquery.slimscroll.min.js"></script>
@@ -564,6 +370,8 @@
 	<script src="assets/js/flot/jquery.flot.min.js"></script>
 	<script src="assets/js/flot/jquery.flot.pie.min.js"></script>
 	<script src="assets/js/flot/jquery.flot.resize.min.js"></script>
+	<script src="assets/js/jquery.dataTables.min.js"></script>
+	<script src="assets/js/jquery.dataTables.bootstrap.js"></script>
 
 	<script src="Highchart/highcharts.js"></script>
 	<script src="Highchart/modules/exporting.js"></script>
@@ -818,183 +626,15 @@
 						else
 							$(this).closest('li').removeClass('selected');
 					});
+			
+			$( "#datepicker" ).datepicker({
+				showOtherMonths: true,
+				selectOtherMonths: false,
+			});
+
 
 		})
 	</script>
-
-	<script type="text/javascript">
-	 Highcharts.setOptions({
- 		global: {
- 				useUTC: false
- 		}
- });
- var timestamp1=Number('$!{tmptime}');
- var initData1 = [];
- var initData2 = [];
-	function test_data1(){
-		  $.ajax({
-		    	type:'get',
-		    	url:'/mkcenter/data/limo.do?timestamp='+timestamp1,
-		    	success:function(data){
-		    		var json =  eval("("+data+")");
-		    		for(var key in json.list){
-		    			initData1.push({
-							x : json.list[key].TIMESTAMP-8*3600*1000,
-							y : json.list[key].L0063
-						});
-		    			initData2.push({
-							x : json.list[key].TIMESTAMP-8*3600*1000,
-							y : json.list[key].L0052
-						});
-		    		}
-		    		console.log(initData1);
-		    		console.log(initData2);
-		    		chart.series[0].setData(initData1);//数据填充到highcharts上面
-		    		chart2.series[0].setData(initData2);//数据填充到highcharts上面
-		    	},
-		    	error:function(e){
-		    		
-		    	}
-	})
-
- 	
- };
- function activeLastPointToolip(chart) {
-		var points = chart.series[0].points;
-		chart.tooltip.refresh(points[points.length -1]);
-}
- var chart = Highcharts.chart('A_CHART', {
- 		chart: {
- 				type: 'spline',
- 				marginRight: 10,
- 		},
- 		title: {
- 				text: '动态模拟实时数据'
- 		},
- 		xAxis: {
- 				type:'datetime',
- 				minTickInterval: 20
- 				
- 		},
- 		yAxis: {
- 				title: {
- 						text: null
- 				},
- 				plotLines: [
- 				{   //一条延伸到整个绘图区的线，标志着轴中一个特定值。
-                     color: '#000',
-                     dashStyle: 'Dash', //Dash,Dot,Solid,默认Solid
-                     width: 1.5,
-                     value: 1,  //y轴显示位置
-                     zIndex: 5
-                 },
-                 {   //一条延伸到整个绘图区的线，标志着轴中一个特定值。
-                     color: '#000',
-                     dashStyle: 'Dash', //Dash,Dot,Solid,默认Solid
-                     width: 1.5,
-                     value: 0.5,  //y轴显示位置
-                     zIndex: 5
-                 }
- 				]
- 		},
- 		
- 		tooltip: {
- 				formatter: function () {
- 					return '<b>'
-						+ this.series.name
-						+ '</b><br/>'
-						+ Highcharts.dateFormat('%Y-%m-%d %H:%M:%S',this.x)
-						+ '<br/>' + Highcharts.numberFormat(this.y, 2);
- 				}
- 		},
- 		legend: {
- 				enabled: false
- 		},
- 		series: [{
- 				name: '立磨数据',
- 				data:test_data1()
- 		}]
- });   
- function refreshForm1(){
- 	var series = chart.series[0];
- 	var series2 = chart2.series[0];
- 	timestamp1+=2000;
- 	console.log(timestamp1);
- 	  $.ajax({
-		    	type:'get',
-		    	url:'/mkcenter/data/update_limo.do?timestamp='+timestamp1,
-		    	success:function(data){
-		    		var json1 =  eval("("+data+")");
-		    		console.log(json1.list);
-		    		var x = json1.list.timestamp-8*3600*1000;
-		    		var y = json1.list.l0063;
-		    		var y2 = json1.list.l0052;
-		    		series.addPoint([ x, y ], true, true);
-					activeLastPointToolip(chart);
-					series2.addPoint([ x, y2 ], true, true);
-					activeLastPointToolip(chart2);
-		    	},
-		    	error:function(e){
-		    		
-		    	}
-	})
- }
-	</script>
-	<script type="text/javascript">
- var chart2 = Highcharts.chart('B_CHART', {
- 		chart: {
- 				type: 'spline',
- 				marginRight: 10,
- 		},
- 		title: {
- 				text: '动态模拟实时数据'
- 		},
- 		xAxis: {
- 				type:'datetime',
- 				minTickInterval: 20
- 				
- 		},
- 		yAxis: {
- 				title: {
- 						text: null
- 				},
- 				plotLines: [
- 				{   //一条延伸到整个绘图区的线，标志着轴中一个特定值。
-                     color: '#000',
-                     dashStyle: 'Dash', //Dash,Dot,Solid,默认Solid
-                     width: 1.5,
-                     value: 1,  //y轴显示位置
-                     zIndex: 5
-                 },
-                 {   //一条延伸到整个绘图区的线，标志着轴中一个特定值。
-                     color: '#000',
-                     dashStyle: 'Dash', //Dash,Dot,Solid,默认Solid
-                     width: 1.5,
-                     value: 0.5,  //y轴显示位置
-                     zIndex: 5
-                 }
- 				]
- 		},
- 		
- 		tooltip: {
- 				formatter: function () {
- 					return '<b>'
-						+ this.series.name
-						+ '</b><br/>'
-						+ Highcharts.dateFormat('%Y-%m-%d %H:%M:%S',this.x)
-						+ '<br/>' + Highcharts.numberFormat(this.y, 2);
- 				}
- 		},
- 		legend: {
- 				enabled: false
- 		},
- 		series: [{
- 				name: '立磨数据',
- 				data:[]
- 		}]
- });   
-	</script>
-
 	<script type="text/javascript">
 		
 	</script>
