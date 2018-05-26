@@ -116,6 +116,29 @@ public class DataController {
 				LOGGER.error("查询失败",e);
 			}
 			result = null;
+			
+		}
+		CommonUtil.writeToWeb(result, "html", response);
+		return null;
+	}
+	
+	@RequestMapping(value = "/update_limo_test")
+	public String updateDataCell_test(HttpServletRequest request,
+							HttpServletResponse response,
+							@RequestParam("timestamp") String timestamp) throws IOException {
+		String result = null;	
+		try {
+			DbLimo dbLimo = dbLimoService.selectNearestRecord(timestamp);
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("list", dbLimo);
+			Gson gson = new Gson();
+			result= gson.toJson(map);
+		} catch (Exception e) {
+			if(LOGGER.isErrorEnabled()){
+				LOGGER.error("查询失败",e);
+			}
+			result = null;
+			
 		}
 		CommonUtil.writeToWeb(result, "html", response);
 		return null;

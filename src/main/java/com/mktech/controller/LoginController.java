@@ -157,7 +157,7 @@ public class LoginController {
 		System.out.println(snUserService.getUserByTicket(ticket).getUsername());
 		model.addAttribute("tmpname",snUserService.getUserByTicket(ticket).getUsername());
 		model.addAttribute("tmptime",tmptime);
-		return "WEB-INF/controller_main/table";
+		return "WEB-INF/controller_main/new_table";
 	}
 	/**
 	 * 测试方法入口

@@ -7224,7 +7224,8 @@ th,td,.table-bordered {
 	background-image: linear-gradient(to bottom, #f8f8f8 0, #ececec 100%);
 	background-repeat: repeat-x;
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff8f8f8',
-		endColorstr='#ffececec', GradientType=0 )
+		endColorstr='#ffececec', GradientType=0 );
+	position: relative;
 }
 
 .table thead tr th {
